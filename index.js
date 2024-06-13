@@ -151,7 +151,7 @@ async function run() {
             res.send(result);
         });
 
-        // GET ALL CLASSES ADDED BY INSTRUCTOR
+        // GET ALL CLASSES ADDED BY SALON
         app.get('/classes/:email', verifyJWT, verifyInstructor, async (req, res) => {
             const email = req.params.email;
             const query = { instructorEmail: email };
@@ -188,14 +188,14 @@ async function run() {
             const result = await classesCollection.updateOne(filter, updateDoc, options);
             res.send(result);
         })
-        // * GET APPROVED CLASSES
+        // * GET APPROVED SERCVICES
         app.get('/approved-classes', async (req, res) => {
             const query = { status: 'approved' };
             const result = await classesCollection.find(query).toArray();
             res.send(result);
         })
 
-        // GET ALL INSTRUCTORS
+        // GET ALL SALONS
         app.get('/instructors', async (req, res) => {
             const query = { role: 'instructor' };
             const result = await userCollection.find(query).toArray();
@@ -399,7 +399,7 @@ async function run() {
 
         })
 
-        // !GET ALL INSTrUCTOR  
+        // !GET ALL Salon
 
         app.get('/instructors', async (req, res) => {
             const result = await userCollection.find({ role: 'instructor' }).toArray();
@@ -473,7 +473,7 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Yoga Master Server is running!');
+    res.send('Trim Track Server is running!');
 })
 
 
